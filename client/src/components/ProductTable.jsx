@@ -1,7 +1,19 @@
 import React from 'react';
 import { Edit, Trash2 } from 'lucide-react';
 
-const ProductTable = ({ products, onEdit, onDelete }) => {
+const isProductEnabled = (value) => {
+    if (value === true || value === 1 || value === '1' || value === 'true') {
+        return true;
+    }
+
+    if (value && typeof value === 'object' && Array.isArray(value.data)) {
+        return value.data[0] === 1;
+    }
+
+    return false;
+};
+
+const ProductTable = ({ products, onEdit, onDelete, onToggleStatus }) => {
     return (
         <div className="card shadow overflow-hidden border-0">
             <div className="table-responsive">
@@ -12,13 +24,14 @@ const ProductTable = ({ products, onEdit, onDelete }) => {
                             <th className="px-4 py-3 small text-uppercase text-secondary">Name</th>
                             <th className="px-4 py-3 small text-uppercase text-secondary">Price</th>
                             <th className="px-4 py-3 small text-uppercase text-secondary">Stock</th>
+                            <th className="px-4 py-3 small text-uppercase text-secondary">Status</th>
                             <th className="px-4 py-3 small text-uppercase text-secondary text-end">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="bg-white">
                         {products.length === 0 ? (
                             <tr>
-                                <td colSpan="5" className="px-4 py-5 text-center text-muted">
+                                <td colSpan="6" className="px-4 py-5 text-center text-muted">
                                     No products found.
                                 </td>
                             </tr>
@@ -51,6 +64,19 @@ const ProductTable = ({ products, onEdit, onDelete }) => {
                                     </td>
                                     <td className="px-4 py-3 align-middle text-muted">
                                         {product.stock_quantity}
+                                    </td>
+                                    <td className="px-4 py-3 align-middle">
+                                        <div className="form-check form-switch d-inline-block m-0">
+                                            <input
+                                                className="form-check-input product-status-toggle m-0"
+                                                type="checkbox"
+                                                role="switch"
+                                                checked={isProductEnabled(product.is_enabled)}
+                                                onChange={() => onToggleStatus(product)}
+                                                aria-label={`Toggle product status for ${product.name}`}
+                                                title={isProductEnabled(product.is_enabled) ? 'Enabled' : 'Disabled'}
+                                            />
+                                        </div>
                                     </td>
                                     <td className="px-4 py-3 align-middle text-end">
                                         <button

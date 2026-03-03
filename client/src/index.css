@@ -1,1 +1,35 @@
 /* Bootstrap overrides can go here */
+
+/* Custom Toggle Switch (Premium Styling) */
+.product-status-toggle.form-check-input {
+  width: 2.8rem;
+  height: 1.4rem;
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+  background-position: left center;
+  transition: background-color 0.2s ease-in-out, background-position 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.product-status-toggle.form-check-input:focus {
+  border-color: #94a3b8;
+  box-shadow: 0 0 0 0.25rem rgba(148, 163, 184, 0.2);
+}
+
+.product-status-toggle.form-check-input:checked {
+  background-color: #10b981;
+  /* Premium Emerald/Green */
+  border-color: #10b981;
+  background-position: right center;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.product-status-toggle.form-check-input:checked:focus {
+  box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.2);
+}
+
+.form-switch .form-check-input {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
